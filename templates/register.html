@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedOCR-Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="/register" class="form" method="POST">
+            <h2 class="form__title">Create Account</h2>
+
+            {% block messages %}
+            <div class="err__msg">
+                <p>{{err_message}}</p>
+            </div>
+            {% endblock %}
+            <div class="form__input-wrapper">
+                <label class="form__label" for="email">Email</label>
+                <input type="text" class="form__input" id="username" name="userEmail" placeholder="Email" required />
+            </div>
+            <div>
+                <label class="form__label" for="password">Password</label>
+                <input type="password" class="form__input" id="password" name="userPass" placeholder="Password" required/>
+            </div>
+            <button type="submit" class="form__submit-btn" name="formSubmit">
+                Register
+            </button>
+            <div class="bottom__help">
+                <span>Already Have an Account?</span>
+                <span><a href="{{url_for('login')}}">Login</a></span>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
