@@ -1,0 +1,2 @@
+# MedOCR
+Minor Project I
