@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{
+            url_for('static', filename='main.css')
+            }}">
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>MedOCR</h1>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="
+                        {{url_for('homePage')}}
+                        ">Home</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+            </ul>
+        </nav>
+        <a href="#signin" class="btn-signin desktop-nav">Sign In</a>
+
+        <!-- Mobile Hamburger Menu -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+            </ul>
+            <a href="#signin" class="btn-signin">Sign In</a>
+        </nav>
+    </header>
+    {% block bodyContent%}
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Scan Any Medicine. Know What You're Taking.</h2>
+            <p>
+                Instant details on dosage, usage, side effects, and more – just from a
+                photo.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="how">
+        <h3>How It Works</h3>
+        <div class="steps">
+            <div class="step">
+                <h4>📷 Snap a Photo</h4>
+                <p>Take or upload a clear image of the medicine packet.</p>
+            </div>
+            <div class="step">
+                <h4>🧠 OCR Recognition</h4>
+                <p>Our system reads the text and identifies the medicine.</p>
+            </div>
+            <div class="step">
+                <h4>📄 Instant Info</h4>
+                <p>View verified details on usage, dosage, and side effects.</p>
+            </div>
+            <div class="step">
+                <h4>💾 Save For Future</h4>
+                <p>Save results for future references.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h3>Why Use MedOCR?</h3>
+        <div class="features">
+            <div class="feature">
+                <h4>Search By Image</h4>
+                <p>Fast and accurate scanning of medicine names from it's photo.</p>
+            </div>
+            <div class="feature">
+                <h4>Verified Information</h4>
+                <p>Trusted and reliable drug data from certified databases.</p>
+            </div>
+            <div class="feature">
+                <h4>Interaction Alerts</h4>
+                <p>Detect potential conflicts with your other medications.</p>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}
+    <footer>
+        <p>&copy; 2025 MedOCR. All rights reserved.</p>
+    </footer>
+    <script src="
+        {{url_for('static', filename='script.js')}}
+        ">
+
+        </script>
+</body>
+
+</html>

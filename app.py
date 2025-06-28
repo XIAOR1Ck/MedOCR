@@ -3,17 +3,21 @@
 
 import hashlib
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 import passCheck as passc
 from emailValidation import EmailValidator
+from flask_session import Session
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key_here"
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     "mysql+pymysql://medocr:db-medOCR@localhost/MedOCR"
 )
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 db = SQLAlchemy(app)
 
 
@@ -25,7 +29,7 @@ class UserInfo(db.Model):
 
 @app.route("/")
 def homePage():
-    return render_template("base.html")
+    return render_template("index.html", title="MedOCR-Search Medicine Info From Image")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -43,9 +47,9 @@ def login():
         pwhash = hashlib.sha256(password.encode()).hexdigest()
         # database query on email
         user = UserInfo.query.filter_by(email=email).first()
-        print(user.email)
         if user and pwhash == user.password:
-            return render_template("login.html", success_message="Login Succesful!!")
+            session["email"] = user.email
+            return redirect(url_for("home"))
         else:
             return render_template(
                 "login.html", err_message="Incorrect Email Or Password"
@@ -87,6 +91,25 @@ def register():
         # hashed_pw = generate_password_hash(password)
         return redirect(url_for("login"))
     return render_template("register.html")
+
+
+@app.route("/home")
+def home():
+    if "email" in session:
+        return render_template("home.html")
+    else:
+        return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    session.pop("email", None)
+    return redirect(url_for("login"))
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html", title="MedOCR-About")
 
 
 if __name__ == "__main__":
