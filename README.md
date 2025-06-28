@@ -60,3 +60,21 @@ pip install requirements.txt
 ```sh
 flask --app app --debug run
 ```
+
+## Things to be noted before Running the project
+
+**Change the Database URI in app.py**
+
+```python
+app.config["SQLALCHEMY_DATABASE_URI"] = ("mysql+pymysql://username:password@localhost:port/database-name")
+```
+
+**Initializing the database**
+
+- Go to the project folder and enter the python shell by running python command
+- Run the following commands in the pytjon shell.
+
+```python
+from app import db
+db.create_all()
+```
