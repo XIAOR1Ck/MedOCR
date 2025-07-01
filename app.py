@@ -27,6 +27,12 @@ class UserInfo(db.Model):
     password = db.Column(db.String(200), nullable=False)
 
 
+def createSession(email):
+    userData = UserInfo.query.filter_by(email=email).first()
+    session.update({"user_id": userData.id, "user_email": userData.email})
+    return True
+
+
 @app.route("/")
 def homePage():
     return render_template("index.html", title="MedOCR-Search Medicine Info From Image")
@@ -48,7 +54,7 @@ def login():
         # database query on email
         user = UserInfo.query.filter_by(email=email).first()
         if user and pwhash == user.password:
-            session["email"] = user.email
+            createSession(user.email)
             return redirect(url_for("home"))
         else:
             return render_template(
@@ -89,14 +95,15 @@ def register():
         db.session.add(newUser)
         db.session.commit()
         # hashed_pw = generate_password_hash(password)
-        return redirect(url_for("login"))
+        createSession(email)
+        return redirect(url_for("home"))
     return render_template("register.html")
 
 
 @app.route("/home")
 def home():
-    if "email" in session:
-        return render_template("home.html")
+    if "user_email" in session:
+        return render_template("app-home.html")
     else:
         return redirect(url_for("login"))
 

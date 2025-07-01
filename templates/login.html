@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MedOCR-Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css' )}}" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <title>Login Form</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}" />
 </head>
 
 <body>
-    <div class="wrapper">
-        <form action="/login" class="form" method="POST">
-            <h2 class="form__title">Login Here</h2>
-
-            {% block messages %}
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+             {% block messages %}
             <div class="err__msg">
                 <p>{{err_message}}</p>
             </div>
@@ -23,21 +20,23 @@
             </div>
 
             {% endblock %}
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="text" id="email" name="userEmail" placeholder="Enter your email" required />
+            </div>
 
-            <div class="form__input-wrapper">
-                <label class="form__label" for="username">Email</label>
-                <input type="text" class="form__input" id="username" name="userEmail" placeholder="Email" required/>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="userPass" placeholder="Enter your password" required />
             </div>
-            <div>
-                <label class="form__label" for="password">Password</label>
-                <input type="password" class="form__input" id="password" name="userPass" placeholder="Password" required/>
-            </div>
-            <button type="submit" class="form__submit-btn" name="formSubmit">
-                Log In
-            </button>
-            <div class="bottom__help">
-                <span>Don't Have An Account?</span>
-                <span><a href="{{ url_for('register') }}">Register</a></span>
+
+            <button type="submit" class="login-btn">Login</button>
+
+            <div class="form-footer">
+                <p>
+                    Don't have an account? <a href="{{url_for('register')}}">Sign up</a>
+                </p>
             </div>
         </form>
     </div>
