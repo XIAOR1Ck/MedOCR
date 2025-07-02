@@ -1,69 +1,63 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bottom Navigation</title>
     <!-- RemixIcon CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="
-            {{url_for('static', filename='app-home.css')}}
-            " />
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="
+            {{ url_for('static', filename='app-home.css') }}
+            "
+    />
+  </head>
 
-<body>
-    <!-- Content Sections -->
-    <div id="history-content" class="content-section">
-        <h2>History</h2>
-        <p>Your history will appear here</p>
-    </div>
-
-    <div id="search-content" class="content-section">
-        <h2>Search</h2>
-        <p>Search functionality will appear here</p>
-    </div>
-
-    <div id="profile-content" class="content-section">
-        <h2>Profile</h2>
-        <p>Your profile information will appear here</p>
-    </div>
+  <body>
+    {% block Data %}
+<a href="{{ url_for('medicine', set_id='8acce3c1-f4be-4968-a71f-3ffd9fbaa4a4') }}"
+      >Click Here</a
+    >
+    {% endblock %}
 
     <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <div class="nav-container">
-            <div class="nav-item" data-target="history-content">
-                <i class="nav-icon ri-history-line"></i>
-                <div class="nav-text">History</div>
-            </div>
-            <div class="nav-item active" data-target="search-content">
-                <i class="nav-icon ri-search-line"></i>
-                <div class="nav-text">Search</div>
-            </div>
-            <div class="nav-item" data-target="profile-content">
-                <i class="nav-icon ri-user-line"></i>
-                <div class="nav-text">Profile</div>
-            </div>
+      <div class="nav-container">
+        <div class="nav-item" data-target="history-content">
+          <i class="nav-icon ri-history-line"></i>
+          <div class="nav-text">History</div>
         </div>
+        <div class="nav-item active" data-target="search-content">
+          <i class="nav-icon ri-search-line"></i>
+          <div class="nav-text">Search</div>
+        </div>
+        <div class="nav-item" data-target="profile-content">
+          <i class="nav-icon ri-user-line"></i>
+          <div class="nav-text">Profile</div>
+        </div>
+      </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const navItems = document.querySelectorAll(".nav-item");
+      document.addEventListener("DOMContentLoaded", function () {
+        const navItems = document.querySelectorAll(".nav-item");
 
-            navItems.forEach((item) => {
-                item.addEventListener("click", function () {
-                    // Remove active class from all items and sections
-                    navItems.forEach((nav) => nav.classList.remove("active"));
-                    document.querySelectorAll(".content-section").forEach((section) => {
-                        section.classList.remove("active");
-                    });
-
-                    // Add active class to clicked item
-                    this.classList.add("active");
-                });
+        navItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            // Remove active class from all items and sections
+            navItems.forEach((nav) => nav.classList.remove("active"));
+            document.querySelectorAll(".content-section").forEach((section) => {
+              section.classList.remove("active");
             });
-        });
-    </script>
-</body>
 
+            // Add active class to clicked item
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

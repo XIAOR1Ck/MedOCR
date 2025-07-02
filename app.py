@@ -7,6 +7,7 @@ from flask import Flask, redirect, render_template, request, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 import passCheck as passc
+from dailymed_fetch import get_xml, parse_xml
 from emailValidation import EmailValidator
 from flask_session import Session
 
@@ -117,6 +118,13 @@ def logout():
 @app.route("/about")
 def about():
     return render_template("about.html", title="MedOCR-About")
+
+
+@app.route("/medicine/<set_id>")
+def medicine(set_id):
+    xml_response = get_xml(set_id)
+    med_name, setid, form, route, sections = parse_xml(xml_response)
+    return render_template("medicine.html", sections=sections)
 
 
 if __name__ == "__main__":
