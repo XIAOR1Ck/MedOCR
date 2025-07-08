@@ -1,3 +1,7 @@
-{% extends "app-home.html" %} {% block Data %} {% for section in sections %}
+{% extends "app-home.html" %} 
+    {%block Data %}
+{% endblock %}
+    {% block xmlContent %}<div class="xml-content"> {% for section in sections %}
 <div class="section">{{ section|safe }}</div>
-{% endfor %} {% endblock %}
+
+{% endfor %} </div> {% endblock %}
