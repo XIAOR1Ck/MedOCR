@@ -28,7 +28,7 @@
                 <li><a href="{{url_for('about')}}">About</a></li>
             </ul>
         </nav>
-        <a href="#signin" class="btn-signin desktop-nav">Sign In</a>
+        <a href="{{ url_for('login') }}" class="btn-signin desktop-nav">Sign In</a>
 
         <!-- Mobile Hamburger Menu -->
         <div class="hamburger">
@@ -45,7 +45,7 @@
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="{{url_for('about')}}">About</a></li>
             </ul>
-            <a href="#signin" class="btn-signin">Sign In</a>
+            <a href="{{ url_for('login') }}" class="btn-signin">Sign In</a>
         </nav>
     </header>
     {% block bodyContent%}

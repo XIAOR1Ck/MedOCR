@@ -1,0 +1,145 @@
+{% extends "base.html" %} {% block title %}Search - MedOCR{% endblock %} {%
+block extra_css %}
+<style>
+    /* Search Page Specific Styles */
+    .search-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        gap: 1.5rem;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .search-title {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .camera-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 12px;
+        background: #000;
+        aspect-ratio: 4/3;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .capture-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        width: 100%;
+        max-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .capture-btn:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    .capture-btn:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    #canvas {
+        display: none;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .search-container {
+            padding: 1.5rem;
+            margin: 10px;
+            gap: 1rem;
+        }
+
+        .search-title {
+            font-size: 1.3rem;
+        }
+
+        .camera-container {
+            aspect-ratio: 4/3;
+        }
+
+        .capture-btn {
+            padding: 0.9rem 1.5rem;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-container {
+            padding: 1rem;
+            margin: 5px;
+            border-radius: 12px;
+        }
+
+        .search-title {
+            font-size: 1.2rem;
+        }
+
+        .capture-btn {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %} {% block content %}
+<div class="search-container">
+    <h1 class="search-title">Camera Capture</h1>
+
+    <div class="camera-container">
+        <video id="video" autoplay playsinline></video>
+    </div>
+
+    <button id="snap" class="capture-btn">
+        <i class="ri-camera-line"></i> Capture
+    </button>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <!-- Buffering Indicator -->
+    <div class="buffering" id="buffering" style="display: none">
+        <div class="spinner"></div>
+        <div class="buffering-text">Identifying medicine...</div>
+    </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="{{ url_for('static', filename='search.js') }}"></script>
+<script>
+    // Simple navigation handler for bottom nav
+    document.addEventListener("DOMContentLoaded", function () {
+        // Remove the old navbar.js functionality since we're using proper links
+        console.log("Search page loaded");
+    });
+</script>
+{% endblock %}

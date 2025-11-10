@@ -1,7 +1,263 @@
-{% extends "app-home.html" %} 
-    {%block Data %}
-{% endblock %}
-    {% block xmlContent %}<div class="xml-content"> {% for section in sections %}
-<div class="section">{{ section|safe }}</div>
+{% extends "base.html" %} {% block title %}Medicine Details - MedOCR{% endblock
+%} {% block extra_css %}
+<style>
+    .medicine-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 
-{% endfor %} </div> {% endblock %}
+    .medicine-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #f8f9fa;
+    }
+
+    .medicine-title {
+        color: #2c3e50;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .medicine-subtitle {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+    }
+
+    .xml-content {
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #007bff;
+    }
+
+    .section:last-child {
+        margin-bottom: 0;
+    }
+
+    .section h2,
+    .section h3,
+    .section h4 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .section h2 {
+        font-size: 1.4rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+    }
+
+    .section h3 {
+        font-size: 1.2rem;
+    }
+
+    .section h4 {
+        font-size: 1.1rem;
+    }
+
+    .section p {
+        margin-bottom: 1rem;
+        color: #555;
+    }
+
+    .section ul,
+    .section ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .section li {
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    .section table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section th,
+    .section td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .section th {
+        background: #2c3e50;
+        color: white;
+        font-weight: 600;
+    }
+
+    .section tr:hover {
+        background: #f8f9fa;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        text-decoration: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-bottom: 1.5rem;
+    }
+
+    .back-btn:hover {
+        background: #5a6268;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .medicine-container {
+            padding: 1.5rem;
+            margin: 10px;
+        }
+
+        .medicine-title {
+            font-size: 1.5rem;
+        }
+
+        .medicine-subtitle {
+            font-size: 1rem;
+        }
+
+        .section {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+        }
+
+        .section table {
+            font-size: 0.9rem;
+        }
+
+        .section th,
+        .section td {
+            padding: 0.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .medicine-container {
+            padding: 1rem;
+            margin: 5px;
+            border-radius: 12px;
+        }
+
+        .medicine-title {
+            font-size: 1.3rem;
+        }
+
+        .section {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+        }
+
+        .back-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 0.8rem;
+        }
+
+        /* Make tables scrollable on very small screens */
+        .section table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    }
+
+    /* Print Styles */
+    @media print {
+        .medicine-container {
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+
+        .back-btn {
+            display: none;
+        }
+
+        .section {
+            break-inside: avoid;
+        }
+    }
+</style>
+{% endblock %} {% block content %}
+<div class="medicine-container">
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-btn">
+        <i class="ri-arrow-left-line"></i> Back to Previous Page
+    </a>
+
+    <!-- Medicine Header -->
+    <div class="medicine-header">
+        <h1 class="medicine-title">Medicine Information</h1>
+        <p class="medicine-subtitle">
+            Detailed product information and usage guidelines
+        </p>
+    </div>
+
+    <!-- Medicine Content -->
+    <div class="xml-content">
+        {% for section in sections %}
+        <div class="section">{{ section|safe }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add print functionality if needed
+        const sections = document.querySelectorAll(".section");
+
+        // Make external links open in new tab
+        sections.forEach((section) => {
+            const links = section.querySelectorAll('a[href^="http"]');
+            links.forEach((link) => {
+                link.setAttribute("target", "_blank");
+                link.setAttribute("rel", "noopener noreferrer");
+            });
+        });
+
+        console.log("Medicine page loaded successfully");
+    });
+</script>
+{% endblock %}

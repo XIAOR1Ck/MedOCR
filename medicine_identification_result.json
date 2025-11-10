@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "ocr_text": "Y \u2018 Pantoprazole T, .d:\\.\u2019! ) .:;\u2018 00\u2018 = cf\u2018)\u2019 . Xap Woet nre vrues Ml P e .n > e e > STV",
+  "extracted_info": {
+    "medicine_names": [
+      "Pantoprazole"
+    ],
+    "strengths": [],
+    "raw_text": "Y \u2018 Pantoprazole T, .d:\\.\u2019! ) .:;\u2018 00\u2018 = cf\u2018)\u2019 . Xap Woet nre vrues Ml P e .n > e e > STV"
+  },
+  "matches": [
+    {
+      "setid": "014f9762-6948-46b7-8659-5c89f35ad8bf",
+      "description": "pantoprazole (as sodium) 40 MG Injection",
+      "type": "SY",
+      "confidence_score": 80,
+      "rxcui": 283669
+    },
+    {
+      "setid": "03974abc-ad03-44da-b7b6-d8e6c4a06105",
+      "description": "pantoprazole 40 MG (as pantoprazole sodium sesquihydrate 45.1 MG) Delayed Release Oral Tablet",
+      "type": "SY",
+      "confidence_score": 80,
+      "rxcui": 314200
+    },
+    {
+      "setid": "03dea010-4bae-43ab-893e-9bbddb58062d",
+      "description": "pantoprazole 20 MG (as pantoprazole sodium sesquihydrate 22.56 MG) Delayed Release Oral Tablet",
+      "type": "SY",
+      "confidence_score": 80,
+      "rxcui": 251872
+    },
+    {
+      "setid": "08098cb2-c048-4640-f387-6beec4a38936",
+      "description": "Protonix 40 MG (pantoprazole sodium sesquihydrate 45.1 MG) Delayed Release Oral Tablet",
+      "type": "SY",
+      "confidence_score": 60,
+      "rxcui": 284400
+    },
+    {
+      "setid": "a476e063-9450-4793-9a22-16b0a0a61cd0",
+      "description": "100 ML pantoprazole 0.4 MG/ML Injection",
+      "type": "SCD",
+      "confidence_score": 60,
+      "rxcui": 2675781
+    }
+  ]
+}
